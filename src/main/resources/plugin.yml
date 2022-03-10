@@ -1,0 +1,7 @@
+name: LogoutLives
+main: net.sand.logoutlives.LogoutLives
+version: 0.9.6 (JAVA 17)
+api-version: 1.18
+load: POSTWORLD
+author: SandAx3r
+description: Keeps players in world after they log out.
