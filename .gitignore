@@ -20,3 +20,6 @@
 /.idea/misc.xml
 /.idea/uiDesigner.xml
 /.idea/vcs.xml
+/.idea/.gitignore
+/.idea/compiler.xml
+/target/classes/config.yml
