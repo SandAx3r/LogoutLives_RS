@@ -25,3 +25,10 @@ lightningDamage : "NO DAMAGE"
 # - TRUE: enabled (default)
 # - FALSE: disabled
 enableSound : TRUE
+
+# --------- NPC OPTIONS ---------
+
+#canOpenDoors: Wheter NPCs are able to open doors
+# - TRUE: enabled (default)
+# - FALSE: disabled
+canOpenDoors : TRUE

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sand.logoutlives.listeners.EntityInteract;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
@@ -39,6 +40,10 @@ public class LogoutLives extends JavaPlugin {
 		pm.registerEvents(new PlayerQuitServer(), this);
 		pm.registerEvents(new PlayerJoinServer(), this);
 		pm.registerEvents(new EntityKill(), this);
+			// Enable this one if NPCs wont be able to open doors
+		if (!logoutL.getConfig().getBoolean("canOpenDoors")) {
+			pm.registerEvents(new EntityInteract(), this);
+		}
 
 		// Create main folder
 		createFolder();
@@ -78,6 +83,7 @@ public class LogoutLives extends JavaPlugin {
 		config.addDefault("lightningDamage", "NO DAMAGE");
 		config.addDefault("lightning", true);
 		config.addDefault("enableSound", true);
+		config.addDefault("canOpenDoors", true);
 	}
 	
 	public static LogoutLives get() {
