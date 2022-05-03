@@ -1,11 +1,14 @@
-package net.sand.logoutlives.extras;
+package net.sand.logoutlives.util;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import net.sand.logoutlives.LogoutLives;
 import net.sand.logoutlives.LogoutVillager;
@@ -13,14 +16,18 @@ import net.sand.logoutlives.LogoutVillager;
 public class SaveFilesLL {
 
 	// Save objects
-	public static void saveLogoutVillagers(List<LogoutVillager> villagers, String filepath) {
+	public static void saveLogoutVillagers(HashMap<UUID, LogoutVillager> villagers, String filepath) {
 		try {
 
 			// Save
 
+			// First, create list for saving optm.
+			List<LogoutVillager> villagerList = new ArrayList<>(villagers.values());
+
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filepath));
 
-			oos.writeObject(villagers);
+
+			oos.writeObject(villagerList);
 
 			oos.close();
 
@@ -38,13 +45,14 @@ public class SaveFilesLL {
 			// Read
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filepath));
 
-			LogoutLives.villagersL = (List<LogoutVillager>) ois.readObject();
+			for (LogoutVillager v: (List<LogoutVillager>) ois.readObject()) {
+				LogoutLives.villagersL.put(v.getVillagerUUID(), v);
+			}
 
 			ois.close();
 			System.out.println("[LogoutLives] Successfully read LogoutVillagers");
 		} catch (FileNotFoundException ex) {
 			System.out.println("[LogoutLives] LogoutVillagers file does not exist, skipping reading");
-			return;
 		} catch (Exception ex) {
 			System.out.println("[LogoutLives] An error occurred while reading LogoutVillagers");
 			ex.printStackTrace();

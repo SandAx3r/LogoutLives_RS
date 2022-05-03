@@ -1,4 +1,4 @@
-package net.sand.logoutlives.extras;
+package net.sand.logoutlives.util;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -13,7 +13,7 @@ public class TickChecker {
 	public static void scheduleTimer(Plugin plugin, final World world) {
 		plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 			public void run() {
-				for (LogoutVillager logoutL : LogoutLives.villagersL) {
+				for (LogoutVillager logoutL : LogoutLives.villagersL.values()) {
 					if (!logoutL.isDead()) { // First check if is dead
 						Villager v = (Villager) plugin.getServer().getEntity(logoutL.getVillagerUUID());
 						if ((v == null)) {

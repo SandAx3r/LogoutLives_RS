@@ -1,24 +1,23 @@
 package net.sand.logoutlives;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.UUID;
 
 import net.sand.logoutlives.listeners.EntityInteract;
-import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import net.sand.logoutlives.extras.SaveFilesLL;
-import net.sand.logoutlives.extras.TickChecker;
+import net.sand.logoutlives.util.SaveFilesLL;
+import net.sand.logoutlives.util.TickChecker;
 import net.sand.logoutlives.listeners.EntityKill;
 import net.sand.logoutlives.listeners.PlayerJoinServer;
 import net.sand.logoutlives.listeners.PlayerQuitServer;
 
 public class LogoutLives extends JavaPlugin {
 
-	public static List<LogoutVillager> villagersL = new ArrayList<>();
+	public static HashMap<UUID, LogoutVillager> villagersL = new HashMap<>();
 	public static LogoutLives logoutL;
 	public FileConfiguration config;
 	

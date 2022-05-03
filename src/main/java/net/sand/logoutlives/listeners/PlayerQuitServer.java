@@ -11,24 +11,17 @@ import net.sand.logoutlives.LogoutVillager;
 
 public class PlayerQuitServer implements Listener {
 
-	LogoutLives logoutL = LogoutLives.get();
-
 	// Player Logout
 	@EventHandler
 	public void onPlayerLogout(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
 
-		/**
-		 * 
-		 * VILLAGER CREATION
-		 * 
-		 **/
 		if (p.getGameMode() != GameMode.SPECTATOR) {
 			LogoutVillager lv = new LogoutVillager(p.getDisplayName(), false);
 			lv.create(p.getLocation());
 
 			// Save villager
-			LogoutLives.villagersL.add(lv);
+			LogoutLives.villagersL.put(lv.getVillagerUUID(), lv);
 		}
 		
 	}

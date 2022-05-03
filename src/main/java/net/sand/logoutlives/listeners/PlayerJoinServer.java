@@ -22,10 +22,10 @@ public class PlayerJoinServer implements Listener{
 		p.getWorld().loadChunk(p.getLocation().getChunk());
 
 		// Find the villager in list
-		for (LogoutVillager lv : LogoutLives.villagersL) {
+		for (LogoutVillager lv : LogoutLives.villagersL.values()) {
 
 			if (p.getDisplayName().equals(lv.getPlayerName())) {
-				v = (Entity) logoutL.getServer().getEntity(lv.getVillagerUUID());
+				v = logoutL.getServer().getEntity(lv.getVillagerUUID());
 				
 				logoutL.getServer().getEntity(lv.getVillagerUUID());
 				Location loc = new Location(logoutL.getServer().getWorld(lv.getWorld()), lv.getVillagerX(), lv.getVillagerY(), lv.getVillagerZ());
@@ -34,12 +34,12 @@ public class PlayerJoinServer implements Listener{
 					p.teleport(loc);
 					System.out.println("[LogoutLives] " + p.getDisplayName() + " died offline, now online");
 					p.setHealth(0);
-					LogoutLives.villagersL.remove(lv);
+					LogoutLives.villagersL.remove(lv.getVillagerUUID());
 					return;
 				}
 				
-				// Remove villager from saveTXT
-				LogoutLives.villagersL.remove(lv);
+				// Remove villager from saved data
+				LogoutLives.villagersL.remove(lv.getVillagerUUID());
 				
 				// First remove to prevent errors
 				v.remove();

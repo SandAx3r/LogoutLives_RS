@@ -80,11 +80,6 @@ public class LogoutVillager implements Serializable {
 	}
 
 	public Entity create(Location loc) {
-		/**
-		 *
-		 * VILLAGER CREATION
-		 *
-		 **/
 		Entity villager = Objects.requireNonNull(Bukkit.getWorld(Objects.requireNonNull(loc.getWorld()).getName())).spawnEntity(loc, EntityType.VILLAGER);
 		villager.setCustomName(this.playerName);
 		villager.setCustomNameVisible(true);
