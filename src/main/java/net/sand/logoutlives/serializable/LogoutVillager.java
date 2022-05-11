@@ -1,20 +1,19 @@
-package net.sand.logoutlives;
-
-import java.io.Serializable;
-import java.util.Objects;
-import java.util.UUID;
+package net.sand.logoutlives.serializable;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 
+import java.io.Serializable;
+import java.util.Objects;
+import java.util.UUID;
+
 public class LogoutVillager implements Serializable {
 
-	/**
-	 * 
-	 */
+	// Settings
 	public String playerName;
+	public UUID playerUUID;
 	public UUID villagerUUID;
 	public Boolean dead;
 	
@@ -24,8 +23,10 @@ public class LogoutVillager implements Serializable {
 	public double y;
 	public double z;
 
-	public LogoutVillager(String playerName, Boolean dead) {
+	public LogoutVillager(String playerName, UUID playerUUID, Boolean dead) {
 		this.playerName = playerName;
+		this.playerUUID = playerUUID;
+		// TODO Usar serialize() y deserialize() de ItemStack
 		this.dead = dead;
 	}
 
@@ -35,29 +36,25 @@ public class LogoutVillager implements Serializable {
 		return playerName;
 	}
 
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
-	}
+	public UUID getPlayerUUID() { return playerUUID; }
 
 	public UUID getVillagerUUID() {
 		return this.villagerUUID;
 	}
 
-	public double getVillagerX() {
-		return this.x;
-	}
-
+	public double getVillagerX() {return this.x;}
 	public double getVillagerY() {
 		return this.y;
 	}
-
 	public double getVillagerZ() {
 		return this.z;
 	}
-	
 	public String getWorld() {
 		return this.world;
 	}
+
+	public Boolean isDead() {return dead;}
+	public void setDead(Boolean dead) {this.dead = dead;}
 
 	public void setVillagerLocation(Location loc) {
 		this.x = loc.getX();
@@ -66,32 +63,20 @@ public class LogoutVillager implements Serializable {
 		this.world = Objects.requireNonNull(loc.getWorld()).getName();
 	}
 
-	public Boolean isDead() {
-		return dead;
-	}
-
-	public void setDead(Boolean dead) {
-		this.dead = dead;
-	}
-
 	@Override
 	public String toString() {
 		return "LogoutVillager [playerName=" + playerName + ", dead=" + dead + "]";
 	}
 
-	public Entity create(Location loc) {
+	public void create(Location loc) {
 		Entity villager = Objects.requireNonNull(Bukkit.getWorld(Objects.requireNonNull(loc.getWorld()).getName())).spawnEntity(loc, EntityType.VILLAGER);
 		villager.setCustomName(this.playerName);
 		villager.setCustomNameVisible(true);
 		villager.setPersistent(true);
 
 		this.villagerUUID = villager.getUniqueId();
-		this.x = villager.getLocation().getX();
-		this.y = villager.getLocation().getY();
-		this.z = villager.getLocation().getZ();
-		this.world = Objects.requireNonNull(villager.getLocation().getWorld()).getName();
+		this.setVillagerLocation(villager.getLocation());
 
-		return villager;
 	}
 
 }

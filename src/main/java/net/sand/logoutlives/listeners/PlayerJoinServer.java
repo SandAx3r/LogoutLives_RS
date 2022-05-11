@@ -1,14 +1,13 @@
 package net.sand.logoutlives.listeners;
 
 import net.sand.logoutlives.LogoutLives;
+import net.sand.logoutlives.serializable.LogoutVillager;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-
-import net.sand.logoutlives.LogoutVillager;
 
 public class PlayerJoinServer implements Listener{
 
@@ -24,13 +23,14 @@ public class PlayerJoinServer implements Listener{
 		// Find the villager in list
 		for (LogoutVillager lv : LogoutLives.villagersL.values()) {
 
-			if (p.getDisplayName().equals(lv.getPlayerName())) {
+			if (p.getUniqueId().equals(lv.getPlayerUUID())) {
 				v = logoutL.getServer().getEntity(lv.getVillagerUUID());
-				
-				logoutL.getServer().getEntity(lv.getVillagerUUID());
+
 				Location loc = new Location(logoutL.getServer().getWorld(lv.getWorld()), lv.getVillagerX(), lv.getVillagerY(), lv.getVillagerZ());
-				System.out.println(logoutL.getServer().getWorld(lv.getWorld()));
 				if (lv.isDead()) {
+					if (logoutL.getConfig().getBoolean("dropsInventory")) {
+						p.getInventory().clear();
+					}
 					p.teleport(loc);
 					System.out.println("[LogoutLives] " + p.getDisplayName() + " died offline, now online");
 					p.setHealth(0);

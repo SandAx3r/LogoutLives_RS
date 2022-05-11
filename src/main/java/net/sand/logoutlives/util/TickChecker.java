@@ -6,7 +6,7 @@ import org.bukkit.entity.Villager;
 import org.bukkit.plugin.Plugin;
 
 import net.sand.logoutlives.LogoutLives;
-import net.sand.logoutlives.LogoutVillager;
+import net.sand.logoutlives.serializable.LogoutVillager;
 
 public class TickChecker {
 	

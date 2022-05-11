@@ -1,17 +1,17 @@
 package net.sand.logoutlives.util;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import net.sand.logoutlives.LogoutLives;
+import net.sand.logoutlives.serializable.LogoutVillager;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-
-import net.sand.logoutlives.LogoutLives;
-import net.sand.logoutlives.LogoutVillager;
 
 public class SaveFilesLL {
 
@@ -57,6 +57,24 @@ public class SaveFilesLL {
 			System.out.println("[LogoutLives] An error occurred while reading LogoutVillagers");
 			ex.printStackTrace();
 		}
+	}
+
+	public static void saveInventory(Player p) throws IOException {
+		File f = new File(LogoutLives.get().getDataFolder().getAbsolutePath(), p.getName() + ".yml");
+		FileConfiguration c = YamlConfiguration.loadConfiguration(f);
+		c.set("inventory.armor", p.getInventory().getArmorContents());
+		c.set("inventory.content", p.getInventory().getContents());
+		c.save(f);
+	}
+
+	@SuppressWarnings("unchecked")
+	public static ItemStack[] restoreInventory(String p) throws IOException {
+		File f = new File(LogoutLives.get().getDataFolder().getAbsolutePath(), p + ".yml");
+		FileConfiguration c = YamlConfiguration.loadConfiguration(f);
+		ItemStack[] content = ((List<ItemStack>) c.get("inventory.armor")).toArray(new ItemStack[0]);
+		content = ((List<ItemStack>) c.get("inventory.content")).toArray(new ItemStack[0]);
+
+		return content;
 	}
 
 }

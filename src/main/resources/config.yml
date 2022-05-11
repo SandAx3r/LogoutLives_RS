@@ -32,3 +32,8 @@ enableSound : TRUE
 # - TRUE: enabled (default)
 # - FALSE: disabled
 canOpenDoors : TRUE
+
+#dropsInventory: Wheter NPCs drop players inventory on death
+# - TRUE: enabled (default)
+# - FALSE: disabled
+dropsInventory : TRUE

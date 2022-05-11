@@ -4,16 +4,14 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.UUID;
 
-import net.sand.logoutlives.listeners.EntityInteract;
+import net.sand.logoutlives.listeners.*;
+import net.sand.logoutlives.serializable.LogoutVillager;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.sand.logoutlives.util.SaveFilesLL;
 import net.sand.logoutlives.util.TickChecker;
-import net.sand.logoutlives.listeners.EntityKill;
-import net.sand.logoutlives.listeners.PlayerJoinServer;
-import net.sand.logoutlives.listeners.PlayerQuitServer;
 
 public class LogoutLives extends JavaPlugin {
 
@@ -43,6 +41,7 @@ public class LogoutLives extends JavaPlugin {
 		if (!logoutL.getConfig().getBoolean("canOpenDoors")) {
 			pm.registerEvents(new EntityInteract(), this);
 		}
+		pm.registerEvents(new PlayerInteract(), this);
 
 		// Create main folder
 		createFolder();
@@ -83,6 +82,7 @@ public class LogoutLives extends JavaPlugin {
 		config.addDefault("lightning", true);
 		config.addDefault("enableSound", true);
 		config.addDefault("canOpenDoors", true);
+		config.addDefault("dropsInventory", true);
 	}
 	
 	public static LogoutLives get() {
