@@ -11,7 +11,6 @@ enableTitle : TRUE
 # mainTitle: Refers to the text that is shown in the title (If it is enabled)
 # You can put whatever you want between "text".
 mainTitle : "F (offline)"
-
 # lighting: summons a lighting when an NPC dies
 # - TRUE: enabled (default)
 # - FALSE: disabled
@@ -20,20 +19,21 @@ lightning: TRUE
 # - "DAMAGE": Does damage
 # - "NO DAMAGE": Doesn't do damage (default)
 lightningDamage : "NO DAMAGE"
-
 # sound: The sound that makes the NPC when it dies.
 # - TRUE: enabled (default)
 # - FALSE: disabled
 enableSound : TRUE
 
 # --------- NPC OPTIONS ---------
-
 #canOpenDoors: Wheter NPCs are able to open doors
 # - TRUE: enabled (default)
 # - FALSE: disabled
 canOpenDoors : TRUE
-
 #dropsInventory: Wheter NPCs drop players inventory on death
 # - TRUE: enabled (default)
 # - FALSE: disabled
 dropsInventory : TRUE
+#invulnerable: NPCs wont be able to die if set to TRUE
+# - TRUE: enabled
+# - FALSE: disabled (default)
+invulnerable: FALSE

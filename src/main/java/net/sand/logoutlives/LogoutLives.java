@@ -33,15 +33,7 @@ public class LogoutLives extends JavaPlugin {
 		
 		// Implement listeners
 		PluginManager pm = getServer().getPluginManager();
-		
-		pm.registerEvents(new PlayerQuitServer(), this);
-		pm.registerEvents(new PlayerJoinServer(), this);
-		pm.registerEvents(new EntityKill(), this);
-			// Enable this one if NPCs wont be able to open doors
-		if (!logoutL.getConfig().getBoolean("canOpenDoors")) {
-			pm.registerEvents(new EntityInteract(), this);
-		}
-		pm.registerEvents(new PlayerInteract(), this);
+		registerEvents(pm);
 
 		// Create main folder
 		createFolder();
@@ -83,6 +75,18 @@ public class LogoutLives extends JavaPlugin {
 		config.addDefault("enableSound", true);
 		config.addDefault("canOpenDoors", true);
 		config.addDefault("dropsInventory", true);
+		config.addDefault("invulnerable", false);
+	}
+
+	public void registerEvents(PluginManager pm) {
+		pm.registerEvents(new PlayerQuitServer(), this);
+		pm.registerEvents(new PlayerJoinServer(), this);
+		pm.registerEvents(new EntityKill(), this);
+		// Enable this one if NPCs wont be able to open doors
+		if (!logoutL.getConfig().getBoolean("canOpenDoors")) {
+			pm.registerEvents(new EntityInteract(), this);
+		}
+		pm.registerEvents(new PlayerInteract(), this);
 	}
 	
 	public static LogoutLives get() {

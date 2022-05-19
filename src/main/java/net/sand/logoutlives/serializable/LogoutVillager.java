@@ -1,5 +1,6 @@
 package net.sand.logoutlives.serializable;
 
+import net.sand.logoutlives.LogoutLives;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -73,6 +74,9 @@ public class LogoutVillager implements Serializable {
 		villager.setCustomName(this.playerName);
 		villager.setCustomNameVisible(true);
 		villager.setPersistent(true);
+		if(LogoutLives.get().getConfig().getBoolean("invulnerable")) {
+			villager.setInvulnerable(true);
+		}
 
 		this.villagerUUID = villager.getUniqueId();
 		this.setVillagerLocation(villager.getLocation());
