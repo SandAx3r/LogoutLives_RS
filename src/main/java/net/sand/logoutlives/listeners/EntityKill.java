@@ -38,7 +38,7 @@ public class EntityKill implements Listener {
 		{
 			LogoutVillager lv = LogoutLives.villagersL.get(villagerUUID);
 
-			System.out.println("[LogoutLives] An entity called: " + ent.getCustomName() + " died while OFFLINE");
+			logoutL.getLogger().info("An entity called: " + ent.getCustomName() + " died while OFFLINE");
 			lv.setDead(true);
 			lv.setVillagerLocation(ent.getLocation());
 

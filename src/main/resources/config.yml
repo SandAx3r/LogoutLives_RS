@@ -1,6 +1,6 @@
 # LogoutLives config files.
 # If you don't want to change anything or like the
-# plugin bt itself, keep the defaults.
+# plugin by itself, keep the defaults.
 # Created by SandAx3r
 
 
@@ -8,17 +8,21 @@
 # - TRUE: enabled (default)
 # - FALSE: disabled
 enableTitle : TRUE
+
 # mainTitle: Refers to the text that is shown in the title (If it is enabled)
 # You can put whatever you want between "text".
 mainTitle : "F (offline)"
+
 # lighting: summons a lighting when an NPC dies
 # - TRUE: enabled (default)
 # - FALSE: disabled
 lightning: TRUE
+
 #lightningDamage: Whether the lightning should do damage.
 # - "DAMAGE": Does damage
 # - "NO DAMAGE": Doesn't do damage (default)
 lightningDamage : "NO DAMAGE"
+
 # sound: The sound that makes the NPC when it dies.
 # - TRUE: enabled (default)
 # - FALSE: disabled
@@ -29,10 +33,12 @@ enableSound : TRUE
 # - TRUE: enabled (default)
 # - FALSE: disabled
 canOpenDoors : TRUE
+
 #dropsInventory: Wheter NPCs drop players inventory on death
 # - TRUE: enabled (default)
 # - FALSE: disabled
 dropsInventory : TRUE
+
 #invulnerable: NPCs wont be able to die if set to TRUE
 # - TRUE: enabled
 # - FALSE: disabled (default)

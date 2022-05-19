@@ -31,10 +31,10 @@ public class SaveFilesLL {
 
 			oos.close();
 
-			System.out.println("[LogoutLives] Successfully saved LogoutVillagers");
+			LogoutLives.get().getLogger().info("Successfully saved LogoutVillagers");
 
 		} catch (Exception ex) {
-			System.out.println("[LogoutLives] An error occurred while saving LogoutVillagers");
+			LogoutLives.get().getLogger().warning("An error occurred while saving LogoutVillagers");
 			ex.printStackTrace();
 		}
 	}
@@ -50,11 +50,11 @@ public class SaveFilesLL {
 			}
 
 			ois.close();
-			System.out.println("[LogoutLives] Successfully read LogoutVillagers");
+			LogoutLives.get().getLogger().info("Successfully read LogoutVillagers");
 		} catch (FileNotFoundException ex) {
-			System.out.println("[LogoutLives] LogoutVillagers file does not exist, skipping reading");
+			LogoutLives.get().getLogger().info("LogoutVillagers file does not exist, skipping reading");
 		} catch (Exception ex) {
-			System.out.println("[LogoutLives] An error occurred while reading LogoutVillagers");
+			LogoutLives.get().getLogger().warning("An error occurred while reading LogoutVillagers");
 			ex.printStackTrace();
 		}
 	}

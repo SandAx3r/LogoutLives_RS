@@ -44,7 +44,7 @@ public class LogoutLives extends JavaPlugin {
 		TickChecker.scheduleTimer(this, this.getServer().getWorld("world"));
 
 		// Finish
-		System.out.println("[LogoutLives] Initialized !");
+		getLogger().info("Initialized !");
 	}
 
 	// Fired when plugin is disabled
@@ -59,9 +59,9 @@ public class LogoutLives extends JavaPlugin {
 		File directory = new File("plugins/LogoutLives");
 		if (!directory.exists()) {
 			if (directory.mkdir()) {
-				System.out.println("[LogoutLives] Directory is created");
+				getLogger().info("Directory created");
 			} else {
-				System.out.println("[LogoutLives] Directory not created");
+				getLogger().warning("Directory not created");
 			}
 		}
 	}

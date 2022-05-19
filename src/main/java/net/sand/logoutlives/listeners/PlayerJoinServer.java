@@ -32,7 +32,7 @@ public class PlayerJoinServer implements Listener{
 						p.getInventory().clear();
 					}
 					p.teleport(loc);
-					System.out.println("[LogoutLives] " + p.getDisplayName() + " died offline, now online");
+					logoutL.getLogger().info(p.getDisplayName() + " died offline, now online");
 					p.setHealth(0);
 					LogoutLives.villagersL.remove(lv.getVillagerUUID());
 					return;
@@ -44,16 +44,15 @@ public class PlayerJoinServer implements Listener{
 				// First remove to prevent errors
 				v.remove();
 				p.teleport(v);
-				System.out.println("[LogoutLives] Entity villager found, name= " + lv.getPlayerName());
-				
 
-				System.out.println("[LogoutLives] LogoutEntity removed: " + lv.getPlayerName());
+				logoutL.getLogger().info("Entity villager found, name= " + lv.getPlayerName());
+				logoutL.getLogger().info("Entity removed: " + lv.getPlayerName());
 
 				return;
 			}
 		}
 
-		System.out.println("[LogoutLives] There are not living entities called " + p.getDisplayName());
+		logoutL.getLogger().info("There are not living entities called " + p.getDisplayName());
 	}	
 	
 }
