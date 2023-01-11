@@ -82,7 +82,7 @@ public class LogoutLives extends JavaPlugin {
 		pm.registerEvents(new PlayerQuitServer(), this);
 		pm.registerEvents(new PlayerJoinServer(), this);
 		pm.registerEvents(new EntityKill(), this);
-		// Enable this one if NPCs wont be able to open doors
+		// Enable this one if NPCs won't be able to open doors
 		if (!logoutL.getConfig().getBoolean("canOpenDoors")) {
 			pm.registerEvents(new EntityInteract(), this);
 		}
