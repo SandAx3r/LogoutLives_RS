@@ -76,6 +76,7 @@ public class LogoutLives extends JavaPlugin {
 		config.addDefault("canOpenDoors", true);
 		config.addDefault("dropsInventory", true);
 		config.addDefault("invulnerable", false);
+		config.addDefault("chunksToLoad", 1);
 	}
 
 	public void registerEvents(PluginManager pm) {

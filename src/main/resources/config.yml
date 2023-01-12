@@ -29,17 +29,22 @@ lightningDamage : "NO DAMAGE"
 enableSound : TRUE
 
 # --------- NPC OPTIONS ---------
-#canOpenDoors: Wheter NPCs are able to open doors
+#canOpenDoors: Whether NPCs are able to open doors
 # - TRUE: enabled (default)
 # - FALSE: disabled
 canOpenDoors : TRUE
 
-#dropsInventory: Wheter NPCs drop players inventory on death
+#dropsInventory: Whether NPCs drop players inventory on death
 # - TRUE: enabled (default)
 # - FALSE: disabled
 dropsInventory : TRUE
 
-#invulnerable: NPCs wont be able to die if set to TRUE
+#invulnerable: NPCs won't be able to die if set to TRUE
 # - TRUE: enabled
 # - FALSE: disabled (default)
 invulnerable: FALSE
+
+#chunksToLoad: The NPC will keep this number of chunks loaded (in a radius)
+# - 1 (default)
+# - Adding more than 1 may impact the performance
+chunksToLoad: 1

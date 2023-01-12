@@ -1,14 +1,12 @@
 package net.sand.logoutlives.util;
 
-import org.bukkit.Chunk;
+import net.sand.logoutlives.LogoutLives;
+import net.sand.logoutlives.serializable.LogoutVillager;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Villager;
 import org.bukkit.plugin.Plugin;
-
-import net.sand.logoutlives.LogoutLives;
-import net.sand.logoutlives.serializable.LogoutVillager;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -25,15 +23,14 @@ public class TickChecker {
 						if ((v == null)) {
 							loc = new Location(world, logoutL.getVillagerX(), logoutL.getVillagerY(), logoutL.getVillagerZ());
 							loadChunk(loc);
-							LogoutLives.get().getLogger().warning(logoutL.getPlayerName() + ": Loading chunk... (" +
-									loc.getChunk() + ")");
+							//LogoutLives.get().getLogger().warning(logoutL.getPlayerName() + ": Loading chunk... (" +
+							//		loc.getChunk() + ")");
 
 						} else {
 							loc = v.getLocation();
-							loadChunk(loc);
 							logoutL.setVillagerLocation(loc);
-							LogoutLives.get().getLogger().info(logoutL.getPlayerName() + ": Chunk loaded. (" +
-									loc.getChunk() + ")");
+							//LogoutLives.get().getLogger().info(logoutL.getPlayerName() + ": Chunk loaded. (" +
+							//		loc.getChunk() + ")");
 						}
 						//LogoutLives.get().getLogger().info(LogoutLives.get().getServer().getWorlds().get(0).getLoadedChunks().toString());
 					}
@@ -47,13 +44,21 @@ public class TickChecker {
 	}
 
 	public static void loadChunk(Location loc) {
+		int chunksToLoad = (int) LogoutLives.get().getConfig().get("chunksToLoad");
 		Location nloc = new Location(LogoutLives.get().getServer().getWorlds().get(0), loc.getX(), loc.getY(), loc.getZ());
-		for (int x = -0; x <= 0; x++) {
-			for (int z = -0; z <= 0; z++) {
+
+		if (chunksToLoad < 0) {
+			chunksToLoad = 0;
+		} else {
+			chunksToLoad--;
+		}
+
+		for (int x = -chunksToLoad; x <= chunksToLoad; x++) {
+			for (int z = -chunksToLoad; z <= chunksToLoad; z++) {
 				nloc.setX(loc.getX() + (x * 16));
 				nloc.setZ(loc.getZ()  + (z * 16));
-				pintarChunk(nloc);
-				LogoutLives.get().getLogger().info("Pintado-> X: " + nloc.getX() + " Z:" + nloc.getZ());
+				nloc.getChunk().load();
+				//LogoutLives.get().getLogger().info("Pintado-> X: " + nloc.getX() + " Z:" + nloc.getZ());
 			}
 		}
 
