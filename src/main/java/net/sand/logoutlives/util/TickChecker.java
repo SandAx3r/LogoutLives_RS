@@ -20,8 +20,8 @@ public class TickChecker {
 					if (!logoutL.isDead()) { // First check if is dead
 						Villager v = (Villager) plugin.getServer().getEntity(logoutL.getVillagerUUID());
 						Location loc;
-						if ((v == null)) {
-							loc = new Location(world, logoutL.getVillagerX(), logoutL.getVillagerY(), logoutL.getVillagerZ());
+						if (v == null) {
+							loc = new Location(v.getWorld(), logoutL.getVillagerX(), logoutL.getVillagerY(), logoutL.getVillagerZ());
 							loadChunk(loc);
 							//LogoutLives.get().getLogger().warning(logoutL.getPlayerName() + ": Loading chunk... (" +
 							//		loc.getChunk() + ")");
@@ -45,7 +45,7 @@ public class TickChecker {
 
 	public static void loadChunk(Location loc) {
 		int chunksToLoad = (int) LogoutLives.get().getConfig().get("chunksToLoad");
-		Location nloc = new Location(LogoutLives.get().getServer().getWorlds().get(0), loc.getX(), loc.getY(), loc.getZ());
+		Location nloc = new Location(loc.getWorld(), loc.getX(), loc.getY(), loc.getZ());
 
 		if (chunksToLoad < 0) {
 			chunksToLoad = 0;
